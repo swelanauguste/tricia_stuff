@@ -5,6 +5,8 @@ import faker.providers
 from django.core.management.base import BaseCommand
 from faker import Faker
 
+from ...models import Category
+
 CATEGORIES = [
     "server hosting",
     "maintenance",
@@ -24,4 +26,5 @@ class Command(BaseCommand):
 
         fake.add_provider(Provider)
 
-        print(faker.contract_categories())
+        for _ in range(2):
+            Category.objects.get_or_create(name=fake.contract_categories())

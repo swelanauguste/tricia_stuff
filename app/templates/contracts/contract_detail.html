@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+
+
+{% block content %}
+<div class="container py-5">
+    <h1>{{object.name}}</h1>
+    <hr>
+    <div class="container py-5">
+        <div class="row">
+            <div class="col">
+                {{object}}
+            </div>
+            <div class="col">
+                <iframe
+                    src="{{object.contract.url}}#toolbar=0&navpanes=0&scrollbar=0"
+                    height="600"
+                    width="648"></iframe>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

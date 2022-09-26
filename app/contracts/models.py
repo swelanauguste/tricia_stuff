@@ -1,27 +1,26 @@
-from statistics import mode
-from unicodedata import category
-
+from email.policy import default
 from django.db import models
+from django.urls import reverse
 
 
 class Category(models.Model):
     name = models.CharField(max_length=100, unique=True)
 
     class Meta:
-        verbose_name_plural = 'categories'
+        verbose_name_plural = "categories"
 
     def __str__(self):
-        return self.name
+        return f"{self.name} ({self.pk})"
 
 
 class Ministry(models.Model):
     name = models.CharField(max_length=100, unique=True)
 
     class Meta:
-        verbose_name_plural = 'ministries'
+        verbose_name_plural = "ministries"
 
     def __str__(self):
-        return self.name
+        return f"{self.name} ({self.pk})"
 
 
 class Contract(models.Model):
@@ -29,12 +28,18 @@ class Contract(models.Model):
     ministry = models.ForeignKey(Ministry, on_delete=models.CASCADE)
     name = models.CharField(max_length=100)
     start_date = models.DateField()
-    end_date = models.DateTimeField()
+    end_date = models.DateField()
     cost = models.FloatField(default=0)
-    contract = models.FileField(upload_to="contracts", blank=True, null=True)
+    contract = models.FileField(
+        upload_to="contracts", blank=True, null=True, default="default_contract.pdf"
+    )
+    contract_ended = models.BooleanField(default=False)
 
     class Meta:
-        ordering = ('end_date',)
+        ordering = ("-end_date",)
+
+    def get_absolute_url(self):
+        return reverse("contracts:contract-detail", kwargs={"pk": self.pk})
 
     def __str__(self):
-        return f"{self.name} from {self.start_date} to {self.end_date} at {self.cost}"
+        return f"{self.name} of ${self.cost}, between {self.start_date} and {self.end_date}"

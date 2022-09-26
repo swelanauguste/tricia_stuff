@@ -16,6 +16,8 @@ DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
 
+X_FRAME_OPTIONS = 'ALLOW-FROM *'
+
 
 # Application definition
 
