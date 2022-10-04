@@ -1,21 +1,50 @@
 {% extends 'base.html' %}
 
+{% load humanize %}
 
+
+{% block head_title %}
+{{object.name|title}}
+{% endblock head_title %}
 
 {% block content %}
-<div class="container py-5">
-    <h1>{{object.name}}</h1>
+<div class="p-5">
+    <h1>{{object.name|title}}</h1>
     <hr>
-    <div class="container py-5">
+    <div class="p-5 mx-auto">
         <div class="row">
-            <div class="col">
-                {{object}}
+            <div class="col-lg-4">
+                <div class="p-5 border bg-dark shadow"
+                    style="border-radius: 1rem;">
+                    <div class="row">
+                        <div class="col-lg-5 bg-light shadow p-3"
+                            style="border-radius: 1rem;">
+                            <p>Name</p>
+                            <p>Category</p>
+                            <p>Ministry</p>
+                            <p>Cost</p>
+                            <p>Start</p>
+                            <p>End</p>
+                        </div>
+                        <div class="col p-3 text-white">
+                            <p>{{object.name|truncatechars:20}}</p>
+                            <p>{{object.category|title|truncatechars:20}}</p>
+                            <p>{{object.ministry|title|truncatechars:20}}</p>
+                            <p>XCD${{object.cost|intcomma}}</p>
+                            <p>{{object.start_date|naturalday}}</p>
+                            <p>{{object.end_date|naturalday}}</p>
+                        </div>
+                    </div>
+
+                </div>
             </div>
-            <div class="col">
-                <iframe
-                    src="{{object.contract.url}}#toolbar=0&navpanes=0&scrollbar=0"
-                    height="600"
-                    width="648"></iframe>
+            <div class="col-lg">
+                <div class="">
+                    <iframe style="margin-left: 15%; margin-right:15%;"
+                        src="{{object.contract.url}}#toolbar=0&navpanes=0&scrollbar=0"
+                        height="600"
+                        width="800"></iframe>
+                </div>
             </div>
         </div>
     </div>

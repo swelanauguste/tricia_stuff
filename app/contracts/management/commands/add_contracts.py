@@ -1,7 +1,5 @@
 import datetime
-import decimal
 import random
-from dataclasses import replace
 
 from django.core.management.base import BaseCommand
 from django.forms import FloatField
@@ -27,9 +25,10 @@ class Command(BaseCommand):
         # print(fake.date_between(datetime.date(2022, 9, 1), datetime.date(2022, 9, 3)))
 
         for _ in range(10):
-            Contract.objects.get_or_create(category = Category.objects.get(pk=random.randint(2, 3)),
-            ministry = Ministry.objects.get(pk=random.randint(1, 20)),
+            Contract.objects.get_or_create(category = Category.objects.get(pk=random.randint(1, 2)),
+            ministry = Ministry.objects.get(pk=random.randint(1, 10)),
             name = fake.company(),
+            # ministry = fake.company(),
             start_date = fake.date_between(datetime.date(2022, 1, 1)),
             end_date =fake.date_between(datetime.date(2022, 8, 30)),
             cost = get_cost()

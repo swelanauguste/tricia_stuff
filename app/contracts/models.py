@@ -1,4 +1,5 @@
 from email.policy import default
+
 from django.db import models
 from django.urls import reverse
 
@@ -10,7 +11,7 @@ class Category(models.Model):
         verbose_name_plural = "categories"
 
     def __str__(self):
-        return f"{self.name} ({self.pk})"
+        return f"{self.name}"
 
 
 class Ministry(models.Model):
@@ -20,7 +21,7 @@ class Ministry(models.Model):
         verbose_name_plural = "ministries"
 
     def __str__(self):
-        return f"{self.name} ({self.pk})"
+        return f"{self.name}"
 
 
 class Contract(models.Model):
@@ -29,11 +30,10 @@ class Contract(models.Model):
     name = models.CharField(max_length=100)
     start_date = models.DateField()
     end_date = models.DateField()
-    cost = models.FloatField(default=0)
+    cost = models.DecimalField(decimal_places=2, max_digits=10, default=0)
     contract = models.FileField(
         upload_to="contracts", blank=True, null=True, default="default_contract.pdf"
     )
-    contract_ended = models.BooleanField(default=False)
 
     class Meta:
         ordering = ("-end_date",)
