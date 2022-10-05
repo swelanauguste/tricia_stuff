@@ -1,8 +1,14 @@
 {% extends 'base.html' %}
 
+
+{% block head_title %}
+Contracts
+{% endblock head_title %}
+
+
 {% load humanize %}
 
-{% block content %}
+{% block content %} 
 <div class="p-5 vh-100">
     <h1>Contracts</h1>
     <hr>
@@ -14,8 +20,9 @@
                 <a title="${{contract.cost|floatformat:2|intcomma}}"
                     class="text-decoration-none text-dark"
                     href="{{contract.get_absolute_url}}">{{contract.name}} ||
-                    Start date:{{contract.start_date}} <span class="text-danger fw-bold">End
-                    date:{{contract.end_date}}</span></a>
+                    Start date:{{contract.start_date}} <span
+                        class="text-danger fw-bold">End
+                        date:{{contract.end_date}}</span></a>
                 <hr>
             </li>
             {% endfor %}
