@@ -8,49 +8,42 @@
 {% endblock head_title %}
 
 {% block content %}
-<div class="p-5 vh-100">
+<div class="p-5">
     <h1>{{object.name|title}}</h1>
     <hr>
-    <div class="p-5 mx-auto">
-        <div class="row">
-            <div class="col-lg-4">
-                <div class="p-5 border bg-dark shadow-lg"
+    <div class="p-5">
+        <div class="p-5 border bg-dark shadow col-lg-6 mx-auto"
+            style="border-radius: 1rem;">
+            <div class="row">
+                <div class="col-lg-4 bg-light shadow p-3 text-end"
                     style="border-radius: 1rem;">
-                    <div class="row">
-                        <div class="col-lg-5 bg-light shadow p-3 text-end"
-                            style="border-radius: 1rem;">
-                            <p>Name</p>
-                            <p>Category</p>
-                            <p>Ministry</p>
-                            <p>Cost</p>
-                            <p>Start</p>
-                            <p>End</p>
-                        </div>
-                        <div class="col p-3 text-white">
-                            <p>{{object.name|truncatechars:20}}</p>
-                            <p>{{object.category|title|truncatechars:20}}</p>
-                            <p>{{object.ministry|title|truncatechars:20}}</p>
-                            <p>XCD${{object.cost|intcomma}}</p>
-                            <p>{{object.start_date|naturalday}}</p>
-                            <p>{{object.end_date|naturalday}}</p>
-                        </div>
-                    </div>
-                    <hr>
-                    <div class="my-3 text-end">
-                        <a class="btn btn-sm btn-warning px-5"
-                            href="{% url 'contracts:contract-update' object.pk %}">Edit</a>
-                    </div>
+                    <p>Name</p>
+                    <p>Category</p>
+                    <p>Ministry</p>
+                    <p>Cost</p>
+                    <p>Start</p>
+                    <p>End</p>
                 </div>
-            </div>
-            <div class="col-lg">
-                <div class="">
-                    <iframe style="margin-left: 15%; margin-right:15%;"
-                        src="{{object.contract.url}}#toolbar=0&navpanes=0&scrollbar=0"
-                        height="600"
-                        width="800"></iframe>
+                <div class="col p-3 text-white">
+                    <p>{{object.name|truncatechars:20}}</p>
+                    <p>{{object.category|title|truncatechars:20}}</p>
+                    <p>{{object.ministry|title|truncatechars:20}}</p>
+                    <p>XCD${{object.cost|intcomma}}</p>
+                    <p>{{object.start_date|naturalday}}</p>
+                    <p>{{object.end_date|naturalday}}</p>
                 </div>
             </div>
         </div>
+        <hr>
+        <div class="p-5">
+            <div class="mx-auto">
+                <iframe style="margin-left: 25%; margin-right:20%;"
+                    src="{{object.contract.url}}#toolbar=0&navpanes=0&scrollbar=0"
+                    height="600"
+                    width="800"></iframe>
+            </div>
+        </div>
     </div>
+</div>
 </div>
 {% endblock content %}
