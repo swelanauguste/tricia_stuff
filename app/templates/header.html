@@ -3,17 +3,12 @@
         class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
         <a href="/"
             class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
-            <svg class="bi me-2"
-                width="40"
-                height="32">
-                <use xlink:href="#bootstrap" />
-            </svg>
-            <span class="fs-4">Trica Stuffs*</span>
+            <span class="fs-1">Contracts</span>
         </a>
-
         <ul class="nav nav-pills">
 
-            <li class="nav-item"><a title="add a contract"
+            {% if request.user.is_authenticated %}
+            <li class="nav-item"><a title="home"
                     href="/"
                     class="nav-link px-1"><span
                         class="material-symbols-outlined fs-2 text-dark">
@@ -25,6 +20,14 @@
                         class="material-symbols-outlined fs-2 text-dark">
                         add
                     </span></a></li>
+            <li class="nav-item"><a title="logout"
+                    href="{% url 'account_logout' %}"
+                    class="nav-link px-1"><span
+                        class="material-symbols-outlined fs-2 text-dark">
+                        logout
+                    </span></a></li>
+
+            {% endif %}
         </ul>
     </header>
 </div>

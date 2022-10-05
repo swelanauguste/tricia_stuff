@@ -8,16 +8,16 @@
 {% endblock head_title %}
 
 {% block content %}
-<div class="p-5">
+<div class="p-5 vh-100">
     <h1>{{object.name|title}}</h1>
     <hr>
     <div class="p-5 mx-auto">
         <div class="row">
             <div class="col-lg-4">
-                <div class="p-5 border bg-dark shadow"
+                <div class="p-5 border bg-dark shadow-lg"
                     style="border-radius: 1rem;">
                     <div class="row">
-                        <div class="col-lg-5 bg-light shadow p-3"
+                        <div class="col-lg-5 bg-light shadow p-3 text-end"
                             style="border-radius: 1rem;">
                             <p>Name</p>
                             <p>Category</p>
@@ -35,7 +35,11 @@
                             <p>{{object.end_date|naturalday}}</p>
                         </div>
                     </div>
-
+                    <hr>
+                    <div class="my-3 text-end">
+                        <a class="btn btn-sm btn-warning px-5"
+                            href="{% url 'contracts:contract-update' object.pk %}">Edit</a>
+                    </div>
                 </div>
             </div>
             <div class="col-lg">
