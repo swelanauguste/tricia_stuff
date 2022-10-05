@@ -8,7 +8,7 @@
 {% endblock head_title %}
 
 {% block content %}
-<div class="p-5">
+<div class="p-5 min-vh-100">
     <h1>{{object.name|title}}</h1>
     <hr>
     <div class="p-5">
@@ -32,6 +32,9 @@
                     <p>{{object.start_date|naturalday}}</p>
                     <p>{{object.end_date|naturalday}}</p>
                 </div>
+            </div>
+            <div class="text-end my-3">
+                <a href="{% url 'contracts:contract-update' object.pk %}" class="btn btn-sm btn-outline-light px-5" type="submit">Edit</a>
             </div>
         </div>
         <hr>
